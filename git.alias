@@ -1,0 +1,11 @@
+sgit() {
+  if [ -d .git ]; then args=`pwd`; fi
+  open -b com.syntevo.smartgithg --args $args $*;
+}
+
+git-rev() {
+  date=`date +%y%m%d`
+  rev=`git rev-list --full-history --all --count`
+  hash=`git rev-list --max-count=1 --full-history --all --abbrev=4 --abbrev-commit`
+  export PROJECT_REV=`printf "%s-%03d:%s" $date $rev $hash`
+}
